@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Form fields default to dark text so they remain readable on white admin pages
+   (root body sets text-stone-100 for the marketing landing). */
+input, textarea, select {
+  color: rgb(41 37 36);
+}
+
+@keyframes logo-float {
+  0%, 100% { opacity: 0.04; transform: scale(1); }
+  50% { opacity: 0.08; transform: scale(1.02); }
+}
+.animate-logo-bg {
+  animation: logo-float 8s ease-in-out infinite;
+}
