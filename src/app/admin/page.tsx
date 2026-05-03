@@ -13,10 +13,10 @@ export default function AdminCampaignsPage() {
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
   const [promoCode, setPromoCode] = useState("");
-  const [title, setTitle] = useState("شركة نجيب سليم | خبرة، جودة، واستمرارية");
-  const [discountText, setDiscountText] = useState("خصم 10% علي جميع الأقمشة");
-  const [subtitle, setSubtitle] = useState("في فروع الاسكندرية");
-  const [ctaText, setCtaText] = useState("سجّل الآن لتحصل على قسيمتك!");
+  const [title, setTitle] = useState("");
+  const [discountText, setDiscountText] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [ctaText, setCtaText] = useState("");
   const [bannerUrl, setBannerUrl] = useState("/banner.png");
   const [logoUrl, setLogoUrl] = useState("/logo.png");
 
@@ -143,31 +143,35 @@ export default function AdminCampaignsPage() {
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
                 />
+                <p className="text-xs text-stone-500 mt-1">يظهر فوق صندوق الخصم. اتركه فارغاً ليُخفى.</p>
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-stone-700 mb-1">نص الخصم</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">نص الخصم (السطر الأول داخل الصندوق)</label>
                 <textarea
-                  rows={2}
+                  rows={4}
                   value={discountText}
                   onChange={(e) => setDiscountText(e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
                 />
+                <p className="text-xs text-stone-500 mt-1">يدعم عدة أسطر. اكتب كل ما تريده هنا — لا تكرّر نفس النص في الحقول التالية.</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700 mb-1">النص الفرعي</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">النص الفرعي (سطر منفصل)</label>
                 <input
                   value={subtitle}
                   onChange={(e) => setSubtitle(e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
                 />
+                <p className="text-xs text-stone-500 mt-1">سطر إضافي تحت نص الخصم. اتركه فارغاً ليُخفى.</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-stone-700 mb-1">نص الدعوة للتسجيل</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">نص الدعوة للتسجيل (سطر بالخط العريض)</label>
                 <input
                   value={ctaText}
                   onChange={(e) => setCtaText(e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-lg text-sm"
                 />
+                <p className="text-xs text-stone-500 mt-1">آخر سطر بالخط العريض. اتركه فارغاً ليُخفى.</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-stone-700 mb-1">رابط البانر</label>
