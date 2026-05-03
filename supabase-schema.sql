@@ -4,16 +4,22 @@
 create table if not exists public.campaigns (
   id bigint generated always as identity primary key,
   name text not null,
-  title text not null default 'شركة نجيب سليم | خبرة، جودة، واستمرارية',
-  discount_text text not null default 'خصم 10% علي جميع الأقمشة',
-  subtitle text not null default 'في فروع الاسكندرية',
-  cta_text text not null default 'سجّل الآن لتحصل على قسيمتك!',
+  title text not null default '',
+  discount_text text not null default '',
+  subtitle text not null default '',
+  cta_text text not null default '',
   promo_code text not null,
   banner_url text not null default '/banner.png',
   logo_url text not null default '/logo.png',
   active boolean not null default true,
   created_at timestamptz default now()
 );
+
+-- Clear old defaults if the table already exists with the original Arabic defaults
+alter table public.campaigns alter column title set default '';
+alter table public.campaigns alter column discount_text set default '';
+alter table public.campaigns alter column subtitle set default '';
+alter table public.campaigns alter column cta_text set default '';
 
 create table if not exists public.submissions (
   id uuid default gen_random_uuid() primary key,

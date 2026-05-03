@@ -37,12 +37,12 @@ export async function POST(request: Request) {
   const insertRow = {
     name,
     promo_code,
-    title: body.title || undefined,
-    discount_text: body.discount_text || undefined,
-    subtitle: body.subtitle || undefined,
-    cta_text: body.cta_text || undefined,
-    banner_url: body.banner_url || undefined,
-    logo_url: body.logo_url || undefined,
+    title: body.title ?? "",
+    discount_text: body.discount_text ?? "",
+    subtitle: body.subtitle ?? "",
+    cta_text: body.cta_text ?? "",
+    banner_url: body.banner_url || "/banner.png",
+    logo_url: body.logo_url || "/logo.png",
     active: body.active ?? true,
   };
   const { data, error } = await supabase

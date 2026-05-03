@@ -142,16 +142,22 @@ export default function LandingPage({ campaign }: Props) {
       </header>
       <div className="relative z-10 flex-1 flex flex-col items-center px-3 py-3 sm:py-5">
         <div className="w-full max-w-md text-center">
-          <p className="text-stone-600 text-sm sm:text-base mb-3 sm:mb-4">{c.title}</p>
-          <div className="border-2 border-[#522F1F]/50 rounded-none bg-amber-50/90 p-5 sm:p-6 mb-4 text-right">
-            <p className="text-stone-800 text-base sm:text-lg whitespace-pre-line">{c.discount_text}</p>
-            {c.subtitle && (
-              <p className="text-stone-800 text-base sm:text-lg mt-2 whitespace-pre-line">{c.subtitle}</p>
-            )}
-            {c.cta_text && (
-              <p className="text-stone-800 text-base sm:text-lg mt-2 font-semibold whitespace-pre-line">{c.cta_text}</p>
-            )}
-          </div>
+          {c.title && (
+            <p className="text-stone-600 text-sm sm:text-base mb-3 sm:mb-4">{c.title}</p>
+          )}
+          {(c.discount_text || c.subtitle || c.cta_text) && (
+            <div className="border-2 border-[#522F1F]/50 rounded-none bg-amber-50/90 p-5 sm:p-6 mb-4 text-right">
+              {c.discount_text && (
+                <p className="text-stone-800 text-base sm:text-lg whitespace-pre-line">{c.discount_text}</p>
+              )}
+              {c.subtitle && (
+                <p className="text-stone-800 text-base sm:text-lg mt-2 whitespace-pre-line">{c.subtitle}</p>
+              )}
+              {c.cta_text && (
+                <p className="text-stone-800 text-base sm:text-lg mt-2 font-semibold whitespace-pre-line">{c.cta_text}</p>
+              )}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="border-2 border-[#522F1F]/60 rounded-none shadow-lg p-4 sm:p-5 space-y-4 text-right bg-gradient-to-br from-stone-100 via-amber-50/70 to-stone-100">
             <div>
               <label htmlFor="full_name" className="block text-sm font-medium text-stone-700 mb-1">الاسم الكامل</label>
