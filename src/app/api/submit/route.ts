@@ -13,9 +13,9 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    if (!/^\d{11}$/.test(phoneNumber)) {
+    if (!/^01\d{9}$/.test(phoneNumber)) {
       return NextResponse.json(
-        { error: "رقم الهاتف يجب أن يتكون من 11 رقم." },
+        { error: "رقم الهاتف يجب أن يبدأ بـ 01 ويتكون من 11 رقم." },
         { status: 400 }
       );
     }

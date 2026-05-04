@@ -39,8 +39,8 @@ export default function LandingPage({ campaign }: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    if (!/^\d{11}$/.test(phoneNumber.trim())) {
-      setError("رقم الهاتف يجب أن يتكون من 11 رقم.");
+    if (!/^01\d{9}$/.test(phoneNumber.trim())) {
+      setError("رقم الهاتف يجب أن يبدأ بـ 01 ويتكون من 11 رقم.");
       return;
     }
     setLoading(true);
@@ -169,7 +169,7 @@ export default function LandingPage({ campaign }: Props) {
             </div>
             <div>
               <label htmlFor="phone_number" className="block text-sm font-medium text-stone-700 mb-1">رقم الهاتف</label>
-              <input id="phone_number" type="tel" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, "").slice(0, 11))} inputMode="numeric" pattern="\d{11}" maxLength={11} minLength={11} dir="ltr" title="رقم الهاتف يجب أن يتكون من 11 رقم" className="w-full px-4 py-3.5 sm:py-3 rounded-none border-2 border-stone-300 bg-white text-stone-800 placeholder-stone-400 focus:ring-2 focus:ring-[#522F1F]/40 focus:border-[#522F1F] outline-none transition text-base text-right" placeholder="01XXXXXXXXX" />
+              <input id="phone_number" type="tel" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, "").slice(0, 11))} inputMode="numeric" pattern="01\d{9}" maxLength={11} minLength={11} dir="ltr" title="رقم الهاتف يجب أن يبدأ بـ 01 ويتكون من 11 رقم" className="w-full px-4 py-3.5 sm:py-3 rounded-none border-2 border-stone-300 bg-white text-stone-800 placeholder-stone-400 focus:ring-2 focus:ring-[#522F1F]/40 focus:border-[#522F1F] outline-none transition text-base text-right" placeholder="01XXXXXXXXX" />
             </div>
             {error && (
               <p className="text-sm text-red-700 bg-red-50 py-2 px-3 rounded border border-red-200">{error}</p>
