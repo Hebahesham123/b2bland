@@ -13,6 +13,12 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    if (!/^\d{11}$/.test(phoneNumber)) {
+      return NextResponse.json(
+        { error: "رقم الهاتف يجب أن يتكون من 11 رقم." },
+        { status: 400 }
+      );
+    }
 
     const supabase = getServerSupabase();
     if (!supabase) {
