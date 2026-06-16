@@ -89,6 +89,35 @@ export default function LandingPage({ campaign }: Props) {
     </footer>
   );
 
+  const actionButtons = (
+    <div className="relative z-10 w-full max-w-md mx-auto px-3 pb-4 grid grid-cols-2 gap-3">
+      <a
+        href="https://naguibselim.com/pages/branches"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-none border-2 border-[#522F1F] bg-white text-[#522F1F] font-semibold text-sm sm:text-base hover:bg-[#522F1F] hover:text-white transition active:scale-[0.98] min-h-[48px]"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>فروعنا في انتظارك</span>
+      </a>
+      <a
+        href="https://naguibselim.com/pages/ns-home-1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative flex items-center justify-center gap-2 py-3.5 px-4 rounded-none font-bold text-sm sm:text-base text-white shadow-lg overflow-hidden transition active:scale-[0.98] min-h-[48px] bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 animate-pulse-slow ring-2 ring-amber-300/60 ring-offset-2 ring-offset-white"
+      >
+        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" aria-hidden />
+        <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span className="relative z-10 whitespace-nowrap">🔥 تسوّق أونلاين الآن</span>
+      </a>
+    </div>
+  );
+
   const logoBackground = (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" aria-hidden>
       <Image src={c.logo_url} alt="" width={800} height={400} className="object-contain w-[min(120vw,75rem)] max-w-none h-auto animate-logo-bg opacity-[0.06]" />
@@ -126,6 +155,7 @@ export default function LandingPage({ campaign }: Props) {
             <p className="text-sm text-stone-500">احتفظوا بالكود لاستخدامه عند الدفع.</p>
           </div>
         </div>
+        {actionButtons}
         {connectFooter}
       </main>
     );
@@ -178,6 +208,32 @@ export default function LandingPage({ campaign }: Props) {
               {loading ? "جاري الإرسال…" : "ارسال"}
             </button>
           </form>
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <a
+              href="https://naguibselim.com/pages/branches"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3.5 px-3 rounded-none border-2 border-[#522F1F] bg-white text-[#522F1F] font-semibold text-sm sm:text-base hover:bg-[#522F1F] hover:text-white transition active:scale-[0.98] min-h-[48px]"
+            >
+              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="whitespace-nowrap">فروعنا في انتظارك</span>
+            </a>
+            <a
+              href="https://naguibselim.com/pages/ns-home-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative flex items-center justify-center gap-2 py-3.5 px-3 rounded-none font-bold text-sm sm:text-base text-white shadow-lg overflow-hidden transition active:scale-[0.98] min-h-[48px] bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:via-orange-600 hover:to-red-600 animate-pulse-slow ring-2 ring-amber-300/60 ring-offset-2 ring-offset-white"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" aria-hidden />
+              <svg className="w-5 h-5 relative z-10 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span className="relative z-10 whitespace-nowrap">🔥 تسوّق أونلاين</span>
+            </a>
+          </div>
         </div>
       </div>
       {connectFooter}
