@@ -27,8 +27,21 @@ const DEFAULTS = {
   logo_url: "/logo.png",
 };
 
+function normalizeUrl(url: string | null | undefined, fallback: string): string {
+  const v = (url ?? "").trim();
+  if (!v) return fallback;
+  if (v.startsWith("/") || /^https?:\/\//i.test(v)) return v;
+  if (v.startsWith("//")) return "https:" + v;
+  return "https://" + v;
+}
+
 export default function LandingPage({ campaign }: Props) {
-  const c = { ...DEFAULTS, ...(campaign || {}) };
+  const merged = { ...DEFAULTS, ...(campaign || {}) };
+  const c = {
+    ...merged,
+    banner_url: normalizeUrl(merged.banner_url, DEFAULTS.banner_url),
+    logo_url: normalizeUrl(merged.logo_url, DEFAULTS.logo_url),
+  };
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -120,7 +133,7 @@ export default function LandingPage({ campaign }: Props) {
 
   const logoBackground = (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden" aria-hidden>
-      <Image src={c.logo_url} alt="" width={800} height={400} className="object-contain w-[min(120vw,75rem)] max-w-none h-auto animate-logo-bg opacity-[0.06]" />
+      <Image src={c.logo_url} alt="" width={800} height={400} unoptimized className="object-contain w-[min(120vw,75rem)] max-w-none h-auto animate-logo-bg opacity-[0.06]" />
     </div>
   );
 
@@ -130,12 +143,12 @@ export default function LandingPage({ campaign }: Props) {
         {logoBackground}
         <section className="relative z-10 w-full bg-stone-100">
           <div className="relative w-full min-h-[180px] sm:min-h-[240px] flex items-center justify-center">
-            <Image src={c.banner_url} alt={c.discount_text} width={1200} height={600} className="w-full h-auto object-contain object-center" sizes="100vw" />
+            <Image src={c.banner_url} alt={c.discount_text} width={1200} height={600} unoptimized className="w-full h-auto object-contain object-center" sizes="100vw" />
           </div>
         </section>
         <header className="relative z-10 py-0.5">
           <div className="relative w-52 h-28 sm:w-64 sm:h-36 flex justify-center mx-auto">
-            <Image src={c.logo_url} alt="" width={256} height={144} className="object-contain block" />
+            <Image src={c.logo_url} alt="" width={256} height={144} unoptimized className="object-contain block" />
           </div>
         </header>
         <div className="relative z-10 text-center px-3 mb-2">
@@ -166,12 +179,12 @@ export default function LandingPage({ campaign }: Props) {
       {logoBackground}
       <section className="relative z-10 w-full bg-stone-100 mt-0">
         <div className="relative w-full min-h-[220px] sm:min-h-[280px] flex items-center justify-center">
-          <Image src={c.banner_url} alt={c.discount_text} width={1200} height={600} className="w-full h-auto object-contain object-center" sizes="100vw" priority />
+          <Image src={c.banner_url} alt={c.discount_text} width={1200} height={600} unoptimized className="w-full h-auto object-contain object-center" sizes="100vw" priority />
         </div>
       </section>
       <header className="relative z-10 py-0.5">
         <div className="relative w-56 h-32 sm:w-72 sm:h-40 flex justify-center mx-auto">
-          <Image src={c.logo_url} alt="" width={288} height={160} className="object-contain block" />
+          <Image src={c.logo_url} alt="" width={288} height={160} unoptimized className="object-contain block" />
         </div>
       </header>
       <div className="relative z-10 flex-1 flex flex-col items-center px-3 py-3 sm:py-5">
