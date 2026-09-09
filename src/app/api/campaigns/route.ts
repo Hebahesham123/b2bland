@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     discount_text: body.discount_text ?? "",
     subtitle: body.subtitle ?? "",
     cta_text: body.cta_text ?? "",
-    banner_url: body.banner_url || "/banner.png",
+    banner_url: body.banner_url || "https://cdn.shopify.com/s/files/1/0949/0949/7707/files/FF_Banner_ENG_jpg_b7471bdc-caa7-44a4-9c98-a80724a42f87.jpg?v=1786294752",
     logo_url: body.logo_url || "/logo.png",
     active: body.active ?? true,
   };
