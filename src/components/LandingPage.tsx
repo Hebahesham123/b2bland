@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { Campaign } from "@/lib/supabase";
+import { DEFAULT_BANNER_URL, DEFAULT_LOGO_URL, resolveBannerUrl } from "@/lib/branding";
 
 type Props = {
   campaign?: Pick<
@@ -23,8 +24,8 @@ const DEFAULTS = {
   discount_text: "خصم 10% علي جميع الأقمشة",
   subtitle: "في فروع الاسكندرية",
   cta_text: "سجّل الآن لتحصل على قسيمتك!",
-  banner_url: "https://cdn.shopify.com/s/files/1/0949/0949/7707/files/FF_Banner_ENG_jpg_b7471bdc-caa7-44a4-9c98-a80724a42f87.jpg?v=1786294752",
-  logo_url: "/logo.png",
+  banner_url: DEFAULT_BANNER_URL,
+  logo_url: DEFAULT_LOGO_URL,
 };
 
 function normalizeUrl(url: string | null | undefined, fallback: string): string {
@@ -39,7 +40,7 @@ export default function LandingPage({ campaign }: Props) {
   const merged = { ...DEFAULTS, ...(campaign || {}) };
   const c = {
     ...merged,
-    banner_url: normalizeUrl(merged.banner_url, DEFAULTS.banner_url),
+    banner_url: normalizeUrl(resolveBannerUrl(merged.banner_url), DEFAULT_BANNER_URL),
     logo_url: normalizeUrl(merged.logo_url, DEFAULTS.logo_url),
   };
   const [fullName, setFullName] = useState("");

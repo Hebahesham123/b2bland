@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { checkAdmin, getServerSupabase } from "@/lib/supabase";
+import { resolveBannerUrl } from "@/lib/branding";
 
 type Ctx = { params: { id: string } };
 
@@ -46,6 +47,9 @@ export async function PUT(request: Request, ctx: Ctx) {
   ];
   const update: Record<string, unknown> = {};
   for (const k of allowed) if (k in body) update[k] = body[k];
+  if ("banner_url" in update) {
+    update.banner_url = resolveBannerUrl(update.banner_url as string);
+  }
   const { data, error } = await supabase
     .from("campaigns")
     .update(update)

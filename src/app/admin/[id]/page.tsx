@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { Campaign, Submission } from "@/lib/supabase";
+import { resolveBannerUrl } from "@/lib/branding";
 
 const FIELDS: { key: keyof Campaign; label: string; type?: string; textarea?: boolean }[] = [
   { key: "name", label: "اسم الحملة (داخلي)" },
@@ -57,7 +58,8 @@ export default function CampaignAdminPage({ params }: { params: { id: string } }
         }),
       ]);
       if (!cRes.ok) throw new Error("Campaign not found");
-      setCampaign(await cRes.json());
+      const loaded: Campaign = await cRes.json();
+      setCampaign({ ...loaded, banner_url: resolveBannerUrl(loaded.banner_url) });
       if (sRes.ok) setSubmissions(await sRes.json());
       else setSubmissions([]);
     } catch {
@@ -84,7 +86,8 @@ export default function CampaignAdminPage({ params }: { params: { id: string } }
         alert(d.error || "فشل الحفظ");
         return;
       }
-      setCampaign(await res.json());
+      const saved: Campaign = await res.json();
+      setCampaign({ ...saved, banner_url: resolveBannerUrl(saved.banner_url) });
       alert("تم الحفظ");
     } finally {
       setSaving(false);
