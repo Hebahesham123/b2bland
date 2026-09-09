@@ -9,7 +9,7 @@ create table if not exists public.campaigns (
   subtitle text not null default '',
   cta_text text not null default '',
   promo_code text not null,
-  banner_url text not null default '/banner.png',
+  banner_url text not null default 'https://cdn.shopify.com/s/files/1/0949/0949/7707/files/FF_Banner_ENG_jpg_b7471bdc-caa7-44a4-9c98-a80724a42f87.jpg?v=1786294752',
   logo_url text not null default '/logo.png',
   active boolean not null default true,
   created_at timestamptz default now()
@@ -20,6 +20,12 @@ alter table public.campaigns alter column title set default '';
 alter table public.campaigns alter column discount_text set default '';
 alter table public.campaigns alter column subtitle set default '';
 alter table public.campaigns alter column cta_text set default '';
+alter table public.campaigns alter column banner_url set default 'https://cdn.shopify.com/s/files/1/0949/0949/7707/files/FF_Banner_ENG_jpg_b7471bdc-caa7-44a4-9c98-a80724a42f87.jpg?v=1786294752';
+
+-- Point existing rows at the default banner if they still carry the old placeholder
+update public.campaigns
+  set banner_url = 'https://cdn.shopify.com/s/files/1/0949/0949/7707/files/FF_Banner_ENG_jpg_b7471bdc-caa7-44a4-9c98-a80724a42f87.jpg?v=1786294752'
+  where banner_url is null or btrim(banner_url) in ('', '/banner.png', 'banner.png');
 
 create table if not exists public.submissions (
   id uuid default gen_random_uuid() primary key,
